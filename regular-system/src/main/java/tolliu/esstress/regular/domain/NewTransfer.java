@@ -20,7 +20,7 @@ public record NewTransfer(
     }
 
     public NewOperation debitOperation(UUID txId) {
-        return new NewOperation(txId, destinationAccountId(), "incoming transfer", amount, ZERO);
+        return new NewOperation(txId, destinationAccountId(), "incoming transfer", amount(), ZERO);
     }
 
     public NewOperation feeChargeOperation(UUID txId) {

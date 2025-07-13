@@ -1,7 +1,12 @@
-GET http://localhost:8081/accounts/8a7bdec4-88b3-48d4-81d8-c82bdeaa87bf/balance
+GET http://localhost:8081/accounts/d6a9c09c-2ce9-4dd0-afd9-7d88ef9cbe9b/balance
 Accept: application/json
 
 ###
 
-GET http://localhost:8081/accounts/d4e20bf1-a9d6-4b65-933a-9b35439f5e4d/balance
+GET http://localhost:8081/accounts/9ec328da-617b-47ae-8e6c-9e2cd2b5284d/balance
+Accept: application/json
+
+### Fee account balance
+
+GET http://localhost:8081/accounts/9af05502-fa7b-4f85-9bf3-2459ed88f216/balance
 Accept: application/json

@@ -1,0 +1,7 @@
+GET http://localhost:8081/accounts/b5e4cdb7-48ba-469f-b28e-2a3d0bfdd657/operations
+Accept: application/json
+
+### Fee account operations
+
+GET http://localhost:8081/accounts/9af05502-fa7b-4f85-9bf3-2459ed88f216/operations
+Accept: application/json

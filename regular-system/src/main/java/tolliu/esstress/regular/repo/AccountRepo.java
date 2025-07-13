@@ -5,10 +5,12 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 import tolliu.esstress.regular.domain.Account;
 import tolliu.esstress.regular.domain.NewAccount;
+import tolliu.esstress.regular.domain.Operation;
 
 import java.math.BigDecimal;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
@@ -76,6 +78,28 @@ public class AccountRepo {
         );
 
         return result.stream().findFirst();
+    }
+
+    public List<Operation> retrieveOperations(UUID accountId) {
+        var result = jdbc.query(
+                """
+                        SELECT *
+                        FROM operations
+                        WHERE accounts_id = :accountId
+                        ORDER BY operations_created_at
+                        """,
+                Map.of("accountId", accountId),
+                (rs, i) -> new Operation(
+                        rs.getObject("operations_tx_id", UUID.class),
+                        rs.getObject("accounts_id", UUID.class),
+                        rs.getString("operations_name"),
+                        rs.getBigDecimal("operations_debit"),
+                        rs.getBigDecimal("operations_credit"),
+                        rs.getTimestamp("operations_created_at").toInstant()
+                )
+        );
+
+        return result;
     }
 
     static Account mapAccount(ResultSet rs, int rowNum) throws SQLException {

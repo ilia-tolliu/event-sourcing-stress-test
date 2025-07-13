@@ -8,9 +8,11 @@ import org.springframework.web.bind.annotation.*;
 import tolliu.esstress.regular.domain.Account;
 import tolliu.esstress.regular.domain.NewAccount;
 import tolliu.esstress.regular.domain.NewTransfer;
+import tolliu.esstress.regular.domain.Operation;
 import tolliu.esstress.regular.service.AccountService;
 
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.UUID;
 
 import static org.springframework.http.HttpStatus.CREATED;
@@ -79,4 +81,16 @@ public class AccountController {
             BigDecimal balance
     ) {
     }
+
+    @GetMapping("/{accountId}/operations")
+    @ResponseStatus(OK)
+    OperationsResponse operations(@PathVariable("accountId") UUID accountId) {
+        var operations = accountService.operations(accountId);
+
+        return new OperationsResponse(operations);
+    }
+
+    record OperationsResponse(
+            List<Operation> operations
+    ) {}
 }
