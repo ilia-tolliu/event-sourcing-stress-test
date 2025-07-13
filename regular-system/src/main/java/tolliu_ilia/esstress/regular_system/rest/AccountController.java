@@ -20,7 +20,7 @@ import static org.springframework.http.HttpStatus.OK;
 @RequestMapping("/accounts")
 @Slf4j
 @RequiredArgsConstructor
-public class AccountsController {
+public class AccountController {
 
     private final AccountService accountService;
 
