@@ -5,11 +5,12 @@ import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
-import tolliu_ilia.esstress.regular_system.service.AccountService;
 import tolliu_ilia.esstress.regular_system.domain.Account;
 import tolliu_ilia.esstress.regular_system.domain.NewAccount;
+import tolliu_ilia.esstress.regular_system.service.AccountService;
 
 import java.math.BigDecimal;
+import java.util.UUID;
 
 import static org.springframework.http.HttpStatus.OK;
 
@@ -23,9 +24,7 @@ public class AccountsController {
 
     @PostMapping(path = "")
     @ResponseStatus(OK)
-    OpenAccountResponse openAccount(@RequestBody @Valid OpenAccountRequest json)  {
-        log.info(json.toString());
-
+    OpenAccountResponse openAccount(@RequestBody @Valid OpenAccountRequest json) {
         var newAccount = new NewAccount();
         var account = accountService.openAccount(newAccount, json.amount());
 
@@ -35,7 +34,22 @@ public class AccountsController {
     record OpenAccountRequest(
             @NotNull
             BigDecimal amount
-    ) {}
+    ) {
+    }
 
-    record OpenAccountResponse(Account account) {}
+    record OpenAccountResponse(Account account) {
+    }
+
+    @GetMapping("/{accountId}/balance")
+    @ResponseStatus(OK)
+    BalanceResponse balance(@PathVariable("accountId") UUID accountId) {
+        var balance = accountService.balance(accountId);
+
+        return new BalanceResponse(balance);
+    }
+
+    record BalanceResponse(
+            BigDecimal balance
+    ) {
+    }
 }

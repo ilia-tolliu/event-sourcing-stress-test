@@ -12,6 +12,9 @@ import tolliu_ilia.esstress.regular_system.repo.OperationRepo;
 import java.math.BigDecimal;
 import java.util.UUID;
 
+import static java.lang.String.format;
+import static java.math.BigDecimal.ZERO;
+
 @Service
 @RequiredArgsConstructor
 public class AccountService {
@@ -22,7 +25,7 @@ public class AccountService {
 
     public final TransactionTemplate transactions;
 
-    public Account openAccount(NewAccount newAccount, BigDecimal amount)  {
+    public Account openAccount(NewAccount newAccount, BigDecimal amount) {
         var account = transactions.execute(tx -> {
             var acc = accountRepo.insertAccount(newAccount);
 
@@ -32,7 +35,7 @@ public class AccountService {
                     acc.id(),
                     "open account",
                     amount,
-                    BigDecimal.ZERO
+                    ZERO
             );
 
             operationRepo.insertOperation(newOperation);
@@ -41,5 +44,12 @@ public class AccountService {
         });
 
         return account;
+    }
+
+    public BigDecimal balance(UUID accountId) {
+        var balance = accountRepo.retrieveBalance(accountId)
+                .orElseThrow(() -> new RuntimeException(format("Account not found: %s", accountId)));
+
+        return balance;
     }
 }
