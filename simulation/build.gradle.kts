@@ -11,34 +11,32 @@ plugins {
     application
 }
 
-repositories {
-    // Use Maven Central for resolving dependencies.
-    mavenCentral()
-}
+group = "tolliu-ilia.esstress"
+version = "0.0.1-SNAPSHOT"
 
-dependencies {
-    // This dependency is used by the application.
-    implementation(libs.guava)
-}
-
-testing {
-    suites {
-        // Configure the built-in test suite
-        val test by getting(JvmTestSuite::class) {
-            // Use JUnit Jupiter test framework
-            useJUnitJupiter("5.12.1")
-        }
-    }
-}
-
-// Apply a specific Java toolchain to ease working on different environments.
 java {
     toolchain {
         languageVersion = JavaLanguageVersion.of(21)
     }
 }
 
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation("com.fasterxml.jackson.core:jackson-databind:2.19.1")
+    implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.19.1")
+    testImplementation("org.assertj:assertj-core:3.27.3")
+    testImplementation("org.junit.jupiter:junit-jupiter:5.12.2")
+    testRuntimeOnly("org.junit.platform:junit-platform-launcher:1.12.2")
+}
+
+tasks.withType<Test> {
+    useJUnitPlatform()
+}
+
 application {
     // Define the main class for the application.
-    mainClass = "org.example.App"
+    mainClass = "itolliu.esstress.simulation.App"
 }
