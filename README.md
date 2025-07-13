@@ -46,7 +46,7 @@ cd simulation
 
 Analyse the output.
 
-By (un)commenting the relevant line in [simulation](https://github.com/ilia-tolliu/event-sourcing-stress-test/blob/b684b574d7f94ab2ae54b34d26b7ca5cd80aef4f/simulation/src/main/java/itolliu/esstress/simulation/App.java#L22)
+By (un)commenting the relevant line in [simulation](https://github.com/ilia-tolliu/event-sourcing-stress-test/blob/main/simulation/src/main/java/itolliu/esstress/simulation/App.java#L22)
 you can use single-threaded or concurrent load. 
 Correct work of single-threaded variant confirms that the algorithm implemented correctly.
 Concurrent mode should reveal the issues, which is the main purpose of the simulation.
