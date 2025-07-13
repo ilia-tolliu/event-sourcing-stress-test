@@ -12,7 +12,7 @@ This problem is solved in multiple ways.
 **regular-system** uses a standard approach, where transfer happens
 in scope of a single ACID transaction.
 
-**simulation** generates a dozen of accounts and thousands of transfer.
+**simulation** generates a dozen of accounts and thousands of transfers.
 After running the workload it compares expected and actual final balances. 
 Also, it checks running balances (reconciliation report) whether it gets negative.
 
