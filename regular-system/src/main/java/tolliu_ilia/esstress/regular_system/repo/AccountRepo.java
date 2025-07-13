@@ -39,6 +39,22 @@ public class AccountRepo {
       return result;
     }
 
+    public Optional<Account> retrieveAccount(UUID accountId) {
+        var result = jdbc.query(
+                """
+                    SELECT *
+                    FROM accounts
+                    WHERE accounts_id = :accountId
+                    """,
+                Map.of(
+                        "accountId", accountId
+                ),
+                AccountRepo::mapAccount
+        );
+
+        return result.stream().findFirst();
+    }
+
     public Optional<BigDecimal> retrieveBalance(UUID accountId) {
         var result = jdbc.query(
                 """
