@@ -1,4 +1,4 @@
-POST http://localhost:8081/accounts
+PUT http://localhost:8081/accounts/5d3a0e79-ec57-4efb-a5d4-89e09361c97d
 Content-Type: application/json
 Accept: application/json
 
@@ -8,7 +8,7 @@ Accept: application/json
 
 ###
 
-POST http://localhost:8081/accounts
+PUT http://localhost:8081/accounts/853c2d5e-e5c7-4758-85f8-11a91233cd9e
 Content-Type: application/json
 Accept: application/json
 

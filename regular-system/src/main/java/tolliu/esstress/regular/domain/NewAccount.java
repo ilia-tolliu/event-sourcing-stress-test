@@ -1,4 +1,8 @@
 package tolliu.esstress.regular.domain;
 
-public record NewAccount() {
+import java.util.UUID;
+
+public record NewAccount(
+        UUID accountId
+) {
 }

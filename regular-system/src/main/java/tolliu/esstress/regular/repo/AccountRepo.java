@@ -20,32 +20,34 @@ public class AccountRepo {
     private final NamedParameterJdbcTemplate jdbc;
 
     public Account insertAccount(NewAccount newAccount) {
-      var result = jdbc.queryForObject(
-              """
-              INSERT INTO accounts (
-                accounts_id,
-                accounts_created_at
-              )
-              VALUES (
-                gen_random_uuid(),
-                CURRENT_TIMESTAMP
-              )
-              RETURNING *
-              """,
-              Map.of(),
-              AccountRepo::mapAccount
-      );
+        var result = jdbc.queryForObject(
+                """
+                        INSERT INTO accounts (
+                          accounts_id,
+                          accounts_created_at
+                        )
+                        VALUES (
+                          :accountId,
+                          CURRENT_TIMESTAMP
+                        )
+                        RETURNING *
+                        """,
+                Map.of(
+                        "accountId", newAccount.accountId()
+                ),
+                AccountRepo::mapAccount
+        );
 
-      return result;
+        return result;
     }
 
     public Optional<Account> retrieveAccount(UUID accountId) {
         var result = jdbc.query(
                 """
-                    SELECT *
-                    FROM accounts
-                    WHERE accounts_id = :accountId
-                    """,
+                        SELECT *
+                        FROM accounts
+                        WHERE accounts_id = :accountId
+                        """,
                 Map.of(
                         "accountId", accountId
                 ),
@@ -58,13 +60,13 @@ public class AccountRepo {
     public Optional<BigDecimal> retrieveBalance(UUID accountId) {
         var result = jdbc.query(
                 """
-                    SELECT
-                        SUM(operations_debit) AS debit,
-                        SUM(operations_credit) AS credit
-                    FROM operations
-                    WHERE accounts_id = :accountId
-                    GROUP BY accounts_id
-                    """,
+                        SELECT
+                            SUM(operations_debit) AS debit,
+                            SUM(operations_credit) AS credit
+                        FROM operations
+                        WHERE accounts_id = :accountId
+                        GROUP BY accounts_id
+                        """,
                 Map.of("accountId", accountId),
                 (rs, i) -> {
                     var debit = rs.getBigDecimal("debit");

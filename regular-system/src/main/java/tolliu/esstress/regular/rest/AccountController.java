@@ -24,10 +24,10 @@ public class AccountController {
 
     private final AccountService accountService;
 
-    @PostMapping(path = "")
+    @PutMapping(path = "/{accountId}")
     @ResponseStatus(OK)
-    OpenAccountResponse openAccount(@RequestBody @Valid OpenAccountRequest json) {
-        var newAccount = new NewAccount();
+    OpenAccountResponse openAccount(@PathVariable("accountId") UUID accountId, @RequestBody @Valid OpenAccountRequest json) {
+        var newAccount = new NewAccount(accountId);
         var account = accountService.openAccount(newAccount, json.amount());
 
         return new OpenAccountResponse(account);
