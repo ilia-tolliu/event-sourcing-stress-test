@@ -1,4 +1,4 @@
-package tolliu_ilia.esstress.regular_system.domain;
+package tolliu.esstress.regular.domain;
 
 import java.time.Instant;
 import java.util.UUID;

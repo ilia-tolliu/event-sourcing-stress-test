@@ -1,4 +1,4 @@
-package tolliu_ilia.esstress.regular_system.domain;
+package tolliu.esstress.regular.domain;
 
 import java.math.BigDecimal;
 import java.util.UUID;

@@ -1,14 +1,14 @@
-package tolliu_ilia.esstress.regular_system.rest;
+package tolliu.esstress.regular.rest;
 
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
-import tolliu_ilia.esstress.regular_system.domain.Account;
-import tolliu_ilia.esstress.regular_system.domain.NewAccount;
-import tolliu_ilia.esstress.regular_system.domain.NewTransfer;
-import tolliu_ilia.esstress.regular_system.service.AccountService;
+import tolliu.esstress.regular.domain.Account;
+import tolliu.esstress.regular.domain.NewAccount;
+import tolliu.esstress.regular.domain.NewTransfer;
+import tolliu.esstress.regular.service.AccountService;
 
 import java.math.BigDecimal;
 import java.util.UUID;

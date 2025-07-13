@@ -1,21 +1,21 @@
-package tolliu_ilia.esstress.regular_system.service;
+package tolliu.esstress.regular.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.support.TransactionTemplate;
-import tolliu_ilia.esstress.regular_system.domain.Account;
-import tolliu_ilia.esstress.regular_system.domain.NewAccount;
-import tolliu_ilia.esstress.regular_system.domain.NewOperation;
-import tolliu_ilia.esstress.regular_system.domain.NewTransfer;
-import tolliu_ilia.esstress.regular_system.repo.AccountRepo;
-import tolliu_ilia.esstress.regular_system.repo.OperationRepo;
+import tolliu.esstress.regular.domain.Account;
+import tolliu.esstress.regular.domain.NewAccount;
+import tolliu.esstress.regular.domain.NewOperation;
+import tolliu.esstress.regular.domain.NewTransfer;
+import tolliu.esstress.regular.repo.AccountRepo;
+import tolliu.esstress.regular.repo.OperationRepo;
 
 import java.math.BigDecimal;
 import java.util.UUID;
 
 import static java.lang.String.format;
 import static java.math.BigDecimal.ZERO;
-import static tolliu_ilia.esstress.regular_system.domain.NewTransfer.FEE_AMOUNT;
+import static tolliu.esstress.regular.domain.NewTransfer.FEE_AMOUNT;
 
 @Service
 @RequiredArgsConstructor

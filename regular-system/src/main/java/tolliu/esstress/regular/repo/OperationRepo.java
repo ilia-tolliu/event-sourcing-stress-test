@@ -1,10 +1,10 @@
-package tolliu_ilia.esstress.regular_system.repo;
+package tolliu.esstress.regular.repo;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
-import tolliu_ilia.esstress.regular_system.domain.NewOperation;
-import tolliu_ilia.esstress.regular_system.domain.Operation;
+import tolliu.esstress.regular.domain.NewOperation;
+import tolliu.esstress.regular.domain.Operation;
 
 import java.util.Map;
 import java.util.UUID;

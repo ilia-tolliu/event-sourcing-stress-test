@@ -1,4 +1,4 @@
-package tolliu_ilia.esstress.regular_system.config;
+package tolliu.esstress.regular.config;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -6,15 +6,15 @@ import org.springframework.beans.factory.InitializingBean;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.support.TransactionTemplate;
-import tolliu_ilia.esstress.regular_system.domain.NewOperation;
-import tolliu_ilia.esstress.regular_system.repo.AccountRepo;
-import tolliu_ilia.esstress.regular_system.repo.OperationRepo;
+import tolliu.esstress.regular.domain.NewOperation;
+import tolliu.esstress.regular.repo.AccountRepo;
+import tolliu.esstress.regular.repo.OperationRepo;
 
 import java.math.BigDecimal;
 import java.util.Map;
 import java.util.UUID;
 
-import static tolliu_ilia.esstress.regular_system.domain.NewTransfer.FEE_ACCOUNT_ID;
+import static tolliu.esstress.regular.domain.NewTransfer.FEE_ACCOUNT_ID;
 
 @Component
 @RequiredArgsConstructor

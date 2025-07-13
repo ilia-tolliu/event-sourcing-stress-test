@@ -1,4 +1,4 @@
-package tolliu_ilia.esstress.regular_system;
+package tolliu.esstress.regular;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

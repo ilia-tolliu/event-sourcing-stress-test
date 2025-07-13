@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourcePerFileMappings">
-    <file url="file://$PROJECT_DIR$/regular-system/src/main/java/tolliu_ilia/esstress/regular_system/repo/AccountRepo.java" value="71300cff-bc31-4a1d-91fd-0045cdf5ff84" />
+    <file url="file://$PROJECT_DIR$/regular-system/src/main/java/tolliu/esstress/regular/repo/AccountRepo.java" value="71300cff-bc31-4a1d-91fd-0045cdf5ff84" />
     <file url="file://$APPLICATION_CONFIG_DIR$/consoles/db/71300cff-bc31-4a1d-91fd-0045cdf5ff84/console.sql" value="71300cff-bc31-4a1d-91fd-0045cdf5ff84" />
   </component>
 </project>
