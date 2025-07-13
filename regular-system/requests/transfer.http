@@ -1,0 +1,11 @@
+POST http://localhost:8081/accounts/d4e20bf1-a9d6-4b65-933a-9b35439f5e4d/transfer
+Content-Type: application/json
+Accept: application/json
+
+{
+  "destinationAccountId": "8a7bdec4-88b3-48d4-81d8-c82bdeaa87bf",
+  "amount": "20.00"
+}
+
+###
+

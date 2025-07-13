@@ -7,11 +7,13 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 import tolliu_ilia.esstress.regular_system.domain.Account;
 import tolliu_ilia.esstress.regular_system.domain.NewAccount;
+import tolliu_ilia.esstress.regular_system.domain.NewTransfer;
 import tolliu_ilia.esstress.regular_system.service.AccountService;
 
 import java.math.BigDecimal;
 import java.util.UUID;
 
+import static org.springframework.http.HttpStatus.CREATED;
 import static org.springframework.http.HttpStatus.OK;
 
 @RestController
@@ -38,6 +40,31 @@ public class AccountsController {
     }
 
     record OpenAccountResponse(Account account) {
+    }
+
+    @PostMapping("/{accountId}/transfer")
+    @ResponseStatus(CREATED)
+    TransferResponse transfer(@PathVariable("accountId") UUID sourceAccountId, @RequestBody @Valid TransferRequest json) {
+        var newTransfer = new NewTransfer(
+                sourceAccountId,
+                json.destinationAccountId(),
+                json.amount()
+        );
+
+        var transactionId = accountService.transfer(newTransfer);
+
+        return new TransferResponse(transactionId);
+    }
+
+    record TransferRequest(
+            UUID destinationAccountId,
+            BigDecimal amount
+    ) {
+    }
+
+    record TransferResponse(
+            UUID transactionId
+    ) {
     }
 
     @GetMapping("/{accountId}/balance")
