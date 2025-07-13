@@ -36,11 +36,11 @@ public class Simulation {
 
     private BigDecimal totalBalanceAfter = BigDecimal.ZERO;
 
-    public Simulation(Client client, ExecutorService executor) {
+    public Simulation(Client client, ExecutorService executor, int accountCount, int transferCount) {
         this.client = client;
         this.executor = executor;
-        this.accounts = generateAccounts();
-        this.transfers = generateTransfers(this.accounts);
+        this.accounts = generateAccounts(accountCount);
+        this.transfers = generateTransfers(this.accounts, transferCount);
     }
 
     public void run() {
@@ -177,10 +177,10 @@ public class Simulation {
         return totalBalance;
     }
 
-    static List<NewAccount> generateAccounts() {
+    static List<NewAccount> generateAccounts(int count) {
         System.out.println("Generating accounts...");
         var accounts = new ArrayList<NewAccount>();
-        for (int i = 0; i < 12; i++) {
+        for (int i = 0; i < count; i++) {
             accounts.add(new NewAccount(
                     UUID.randomUUID(),
                     BigDecimal.valueOf(new Random().nextLong(10_000L))
@@ -191,12 +191,12 @@ public class Simulation {
         return unmodifiableList(accounts);
     }
 
-    static List<NewTransfer> generateTransfers(List<NewAccount> accounts) {
+    static List<NewTransfer> generateTransfers(List<NewAccount> accounts, int count) {
         System.out.println("Generating transfers...");
         var transfers = new ArrayList<NewTransfer>();
         var random = new Random();
 
-        while (transfers.size() < 100) {
+        while (transfers.size() < count) {
             var sourceAccountIndex = random.nextInt(accounts.size());
             var destinationAccountIndex = random.nextInt(accounts.size());
             if (sourceAccountIndex == destinationAccountIndex) {

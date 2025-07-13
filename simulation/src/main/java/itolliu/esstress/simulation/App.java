@@ -19,14 +19,14 @@ public class App {
     public static void main(String[] args) {
         try (
                 var http = buildHttpClient();
-//                var executor = Executors.newFixedThreadPool(10)
-                var executor = Executors.newSingleThreadExecutor()
+                var executor = Executors.newFixedThreadPool(10)
+//                var executor = Executors.newSingleThreadExecutor()
         ) {
             var json = buildObjectMapper();
             var baseUrl = URI.create("http://localhost:8081");
             var client = new Client(http, json, baseUrl);
 
-            var simulation = new Simulation(client, executor);
+            var simulation = new Simulation(client, executor, 12, 10000);
 
             simulation.run();
             simulation.checkFinalBalances();

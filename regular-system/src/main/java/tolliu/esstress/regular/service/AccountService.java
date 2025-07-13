@@ -13,7 +13,6 @@ import java.util.UUID;
 
 import static java.lang.String.format;
 import static java.math.BigDecimal.ZERO;
-import static tolliu.esstress.regular.domain.NewTransfer.FEE_ACCOUNT_ID;
 import static tolliu.esstress.regular.domain.NewTransfer.FEE_AMOUNT;
 
 @Service
